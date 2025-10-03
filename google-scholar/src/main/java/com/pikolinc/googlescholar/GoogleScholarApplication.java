@@ -10,6 +10,7 @@ public class GoogleScholarApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GoogleScholarApplication.class, args);
+
     }
 
     @Bean

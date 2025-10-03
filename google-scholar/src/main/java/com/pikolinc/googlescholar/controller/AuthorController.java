@@ -20,4 +20,5 @@ class AuthorController {
     public AuthorDto getAuthorById(@PathVariable String authorId) {
         return googleScholarService.getAuthorById(authorId);
     }
+    
 }
