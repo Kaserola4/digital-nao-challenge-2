@@ -15,7 +15,7 @@ public class GoogleScholarService {
     @Value("${serpapi.api.key}")
     private String apiKey;
 
-    @Value("${serpapi.base.url:https://serpapi.com/search.json}")
+    @Value("${serpapi.base.url}")
     private String baseUrl;
 
     public GoogleScholarService(RestTemplate restTemplate) {
