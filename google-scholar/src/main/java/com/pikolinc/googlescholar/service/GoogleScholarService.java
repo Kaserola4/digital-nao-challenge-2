@@ -1,6 +1,6 @@
 package com.pikolinc.googlescholar.service;
 
-import com.pikolinc.googlescholar.dto.AuthorResponse;
+import com.pikolinc.googlescholar.domain.dto.author.AuthorResponse;
 import com.pikolinc.googlescholar.exception.author.AuthorMissingPropertyException;
 import com.pikolinc.googlescholar.exception.author.AuthorNotFoundException;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.pikolinc.googlescholar.dto;
+package com.pikolinc.googlescholar.domain.dto.article;
 
 /**
  * Data Transfer Object representing a single academic article or publication.

@@ -1,6 +1,6 @@
 package com.pikolinc.googlescholar.controller;
 
-import com.pikolinc.googlescholar.dto.AuthorResponse;
+import com.pikolinc.googlescholar.domain.dto.author.AuthorResponse;
 import com.pikolinc.googlescholar.service.GoogleScholarService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

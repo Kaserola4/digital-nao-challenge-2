@@ -1,4 +1,6 @@
-package com.pikolinc.googlescholar.dto;
+package com.pikolinc.googlescholar.domain.dto.author;
+
+import com.pikolinc.googlescholar.domain.dto.article.ArticleDto;
 
 import java.util.List;
 
