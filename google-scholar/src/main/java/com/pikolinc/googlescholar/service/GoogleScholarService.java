@@ -22,8 +22,8 @@ public class GoogleScholarService {
         this.restTemplate = restTemplate;
     }
 
-    public AuthorResponse getAuthorById(String authorId) throws AuthorNotFoundException {
-        if (authorId == null || authorId.isEmpty()) throw new AuthorMissingPropertyException("Missing [authorId]");
+    public AuthorResponse getAuthorById(String authorId) {
+             if (authorId == null || authorId.isEmpty()) throw new AuthorMissingPropertyException("Missing [authorId]");
         if (apiKey == null || apiKey.isEmpty()) throw new AuthorMissingPropertyException("Missing [apiKey]");
 
         String url = UriComponentsBuilder.fromUriString(baseUrl)
