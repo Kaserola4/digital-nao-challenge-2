@@ -1,6 +1,7 @@
 package com.pikolinc.googlescholar.service;
 
-import com.pikolinc.googlescholar.dto.AuthorDto;
+import com.pikolinc.googlescholar.dto.AuthorResponse;
+import com.pikolinc.googlescholar.exception.author.AuthorMissingPropertyException;
 import com.pikolinc.googlescholar.exception.author.AuthorNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class GoogleScholarService {
         this.restTemplate = restTemplate;
     }
 
-    public AuthorDto getAuthorById(String authorId) throws AuthorNotFoundException {
+    public AuthorResponse getAuthorById(String authorId) throws AuthorNotFoundException {
+        if (authorId == null || authorId.isEmpty()) throw new AuthorMissingPropertyException("Missing [authorId]");
+        if (apiKey == null || apiKey.isEmpty()) throw new AuthorMissingPropertyException("Missing [apiKey]");
+
         String url = UriComponentsBuilder.fromUriString(baseUrl)
                 .queryParam("engine", "google_scholar_author")
                 .queryParam("author_id", authorId)
@@ -29,10 +33,11 @@ public class GoogleScholarService {
                 .queryParam("hl", "en")
                 .toUriString();
 
-        AuthorDto authorDto = restTemplate.getForObject(url, AuthorDto.class);
+        AuthorResponse authorResponse = restTemplate.getForObject(url, AuthorResponse.class);
 
-        if (authorDto == null) throw new AuthorNotFoundException("Author not found: " + authorId);
+        if (authorResponse != null && authorResponse.author() == null)
+            throw new AuthorNotFoundException("Author not found: " + authorId);
 
-        return authorDto;
+        return authorResponse;
     }
 }

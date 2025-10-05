@@ -2,7 +2,7 @@ package com.pikolinc.googlescholar.dto;
 
 import java.util.List;
 
-public record AuthorDto(
+public record AuthorResponse(
         AuthorDetailsDto author,
         List<InterestDto> interests,
         List<ArticleDto> articles,
@@ -21,21 +21,6 @@ public record AuthorDto(
             String title,
             String link
     ) {}
-
-    public record ArticleDto(
-            String title,
-            String link,
-            String citationId,
-            String authors,
-            String publication,
-            String year,
-            CitedByDto citedBy
-    ) {
-        public record CitedByDto(
-                int value,
-                String link
-        ) {}
-    }
 
     public record PublicAccessDto(
             String link,

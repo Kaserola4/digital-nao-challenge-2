@@ -1,6 +1,6 @@
 package com.pikolinc.googlescholar.controller;
 
-import com.pikolinc.googlescholar.dto.AuthorDto;
+import com.pikolinc.googlescholar.dto.AuthorResponse;
 import com.pikolinc.googlescholar.service.GoogleScholarService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +17,8 @@ class AuthorController {
     }
 
     @GetMapping("/{authorId}")
-    public AuthorDto getAuthorById(@PathVariable String authorId) {
+    public AuthorResponse getAuthorById(@PathVariable String authorId) {
         return googleScholarService.getAuthorById(authorId);
     }
-    
+
 }
