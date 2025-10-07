@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.sql.SQLOutput;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,8 +56,6 @@ public class ArticleService {
         if (authorResponseDto.author() == null)
             throw new NotFoundException("Author not found: " + authorId);
 
-        System.out.println(authorResponseDto);
-
         Article article = ArticleMapper.mapFromAuthor(authorResponseDto, articlePosition);
 
         if (article.getTitle() != null) {
@@ -68,5 +66,17 @@ public class ArticleService {
         }
 
         return articleRepository.save(article);
+    }
+
+    public List<Article> getAllArticles(){
+        return articleRepository.findAll();
+    }
+
+    public void deleteArticle(Long id) {
+        if (!articleRepository.existsById(id)) {
+            throw new NotFoundException("Article not found with id: " + id);
+        }
+
+        articleRepository.deleteById(id);
     }
 }

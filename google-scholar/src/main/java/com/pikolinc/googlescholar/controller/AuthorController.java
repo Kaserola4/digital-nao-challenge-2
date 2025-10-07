@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @see AuthorResponseDto
  */
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/authors")
 class AuthorController {
 
     private final AuthorService googleScholarService;
