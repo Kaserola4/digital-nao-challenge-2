@@ -1,6 +1,5 @@
-package com.pikolinc.googlescholar.exception.author;
+package com.pikolinc.googlescholar.exception;
 
-import com.pikolinc.googlescholar.exception.ResponseException;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -19,14 +18,14 @@ import org.springframework.http.HttpStatus;
  * @version 1.0
  * @see ResponseException
  */
-public class AuthorNotFoundException extends ResponseException {
+public class NotFoundException extends ResponseException {
 
     /**
      * Constructs a new AuthorNotFoundException with the specified detail message.
      *
      * @param message the detail message, typically including the author ID that was not found
      */
-    public AuthorNotFoundException(String message) {
+    public NotFoundException(String message) {
         super(message);
     }
 

@@ -1,6 +1,5 @@
-package com.pikolinc.googlescholar.exception.author;
+package com.pikolinc.googlescholar.exception;
 
-import com.pikolinc.googlescholar.exception.ResponseException;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -19,14 +18,14 @@ import org.springframework.http.HttpStatus;
  * @version 1.0
  * @see ResponseException
  */
-public class AuthorMissingPropertyException extends ResponseException {
+public class MissingPropertyException extends ResponseException {
 
     /**
      * Constructs a new AuthorMissingPropertyException with the specified detail message.
      *
      * @param message the detail message indicating which property is missing or invalid
      */
-    public AuthorMissingPropertyException(String message) {
+    public MissingPropertyException(String message) {
         super(message);
     }
 

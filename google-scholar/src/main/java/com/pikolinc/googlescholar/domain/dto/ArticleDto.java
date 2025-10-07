@@ -1,4 +1,4 @@
-package com.pikolinc.googlescholar.domain.dto.article;
+package com.pikolinc.googlescholar.domain.dto;
 
 /**
  * Data Transfer Object representing a single academic article or publication.
@@ -9,7 +9,7 @@ package com.pikolinc.googlescholar.domain.dto.article;
  *
  * @param title the title of the publication
  * @param link URL to the publication (may link to Google Scholar or external source)
- * @param citationId unique identifier for citation tracking
+ * @param citation_Id unique identifier for citation tracking
  * @param authors comma-separated list of author names
  * @param publication the venue where the article was published (journal, conference, etc.)
  * @param year the year of publication
@@ -20,11 +20,11 @@ package com.pikolinc.googlescholar.domain.dto.article;
 public record ArticleDto(
         String title,
         String link,
-        String citationId,
+        String citation_id,
         String authors,
         String publication,
         String year,
-        CitedByDto citedBy
+        CitedByDto cited_by
 ) {
     /**
      * Represents citation information for an article.

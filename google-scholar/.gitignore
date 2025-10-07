@@ -1,5 +1,6 @@
 HELP.md
 .env
+.idea/
 
 target/
 .mvn/wrapper/maven-wrapper.jar
