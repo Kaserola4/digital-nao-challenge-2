@@ -1,15 +1,15 @@
 package com.pikolinc.googlescholar.service;
 
-import com.pikolinc.googlescholar.domain.dto.author.AuthorResponse;
-import com.pikolinc.googlescholar.exception.author.AuthorMissingPropertyException;
-import com.pikolinc.googlescholar.exception.author.AuthorNotFoundException;
+import com.pikolinc.googlescholar.domain.dto.AuthorResponseDto;
+import com.pikolinc.googlescholar.exception.MissingPropertyException;
+import com.pikolinc.googlescholar.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Service for interacting with Google Scholar data through the SerpAPI.
+ * Service for interacting with Google Scholar Author data through the SerpAPI.
  * <p>
  * This service provides methods to retrieve author information from Google Scholar
  * using the SerpAPI service. It handles API communication, URL construction,
@@ -18,11 +18,11 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author Pikolinc
  * @version 1.0
- * @see AuthorResponse
+ * @see AuthorResponseDto
  * @see RestTemplate
  */
 @Service
-public class GoogleScholarService {
+public class AuthorService {
 
     private final RestTemplate restTemplate;
 
@@ -33,11 +33,11 @@ public class GoogleScholarService {
     private String baseUrl;
 
     /**
-     * Constructs a new GoogleScholarService with the specified RestTemplate.
+     * Constructs a new AuthorService with the specified RestTemplate.
      *
      * @param restTemplate the REST client used for HTTP requests to SerpAPI
      */
-    public GoogleScholarService(RestTemplate restTemplate) {
+    public AuthorService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -51,19 +51,19 @@ public class GoogleScholarService {
      * </p>
      *
      * @param authorId the unique Google Scholar author identifier (e.g., "4bahYMkAAAAJ")
-     * @return an {@link AuthorResponse} containing the author's detailed information including
+     * @return an {@link AuthorResponseDto} containing the author's detailed information including
      *         profile data, interests, articles, and pagination information
-     * @throws AuthorMissingPropertyException if authorId is null, empty, or if the API key
+     * @throws MissingPropertyException if authorId is null, empty, or if the API key
      *         is not properly configured
-     * @throws AuthorNotFoundException if no author exists with the provided ID or if the
+     * @throws NotFoundException if no author exists with the provided ID or if the
      *         API returns an empty author object
-     * @see AuthorResponse
+     * @see AuthorResponseDto
      */
-    public AuthorResponse getAuthorById(String authorId) {
+    public AuthorResponseDto getAuthorById(String authorId) {
         if (authorId == null || authorId.isEmpty())
-            throw new AuthorMissingPropertyException("Missing [authorId]");
+            throw new MissingPropertyException("Missing [authorId]");
         if (apiKey == null || apiKey.isEmpty())
-            throw new AuthorMissingPropertyException("Missing [apiKey]");
+            throw new MissingPropertyException("Missing [apiKey]");
 
         String url = UriComponentsBuilder.fromUriString(baseUrl)
                 .queryParam("engine", "google_scholar_author")
@@ -72,11 +72,11 @@ public class GoogleScholarService {
                 .queryParam("hl", "en")
                 .toUriString();
 
-        AuthorResponse authorResponse = restTemplate.getForObject(url, AuthorResponse.class);
+        AuthorResponseDto authorResponseDto = restTemplate.getForObject(url, AuthorResponseDto.class);
 
-        if (authorResponse != null && authorResponse.author() == null)
-            throw new AuthorNotFoundException("Author not found: " + authorId);
+        if (authorResponseDto != null && authorResponseDto.author() == null)
+            throw new NotFoundException("Author not found: " + authorId);
 
-        return authorResponse;
+        return authorResponseDto;
     }
 }
