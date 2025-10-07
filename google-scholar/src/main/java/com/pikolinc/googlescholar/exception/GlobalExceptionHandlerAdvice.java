@@ -34,8 +34,8 @@ class GlobalExceptionHandlerAdvice {
      * Handles all {@link ResponseException} and its subclasses.
      * <p>
      * This method catches business logic exceptions such as
-     * {@link com.pikolinc.googlescholar.exception.author.AuthorNotFoundException}
-     * and {@link com.pikolinc.googlescholar.exception.author.AuthorMissingPropertyException},
+     * {@link NotFoundException}
+     * and {@link MissingPropertyException},
      * converting them into appropriate HTTP responses with status codes defined
      * by each exception type.
      * </p>

@@ -1,6 +1,4 @@
-package com.pikolinc.googlescholar.domain.dto.author;
-
-import com.pikolinc.googlescholar.domain.dto.article.ArticleDto;
+package com.pikolinc.googlescholar.domain.dto;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ import java.util.List;
  * @author Pikolinc
  * @version 1.0
  */
-public record AuthorResponse(
+public record AuthorResponseDto(
         AuthorDetailsDto author,
         List<InterestDto> interests,
         List<ArticleDto> articles,
